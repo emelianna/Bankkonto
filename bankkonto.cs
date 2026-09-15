@@ -20,7 +20,7 @@ static double Amount(string prompt) //Metod för att fråga och ta emot summa. S
     string? input = Console.ReadLine();
     bool isValid = int.TryParse(input, out int number);
 
-    while (!isValid || number < 0 ) //För att säkra att svaret inte är 0 eller annat än ett nummer
+    while (!isValid || number < 1 ) //För att säkra att svaret inte är 0 eller under, eller annat än ett nummer
     {
         if (!isValid)
         {
@@ -40,40 +40,53 @@ static double Amount(string prompt) //Metod för att fråga och ta emot summa. S
 
 
 
-
-
-
 public void Deposit(string prompt)               //Metod för att sätta in pengar.  
-{                                                 //Behöver hindra från att sätta in negativt belopp  
+{           
+  if (!Blocked)    
+  {                                  
     double deposit = Amount(prompt);
     Balance += deposit;              
     MoneyInAccount.Add(deposit);
-                                          
-                                                  //Överföringar mellan dessa tre konton??
-                                                  //Hindra från att frånkonto och -tillkonto är samma
+     }                                     
+   else
+    {
+      Console.WriteLine("Ditt konto är spärrat!");
+    }                                               
+                                                  
 }
 
 public void Withdraw(string prompt)               //Metod för att ta ut pengar. Behöver hindra att ta ut om det är tomt, 
  {   
+  if (!Blocked)
+    {
+
     double withdrawl = Amount(prompt);                                                //såvida det inte är tillåtet
-    Balance -= withdrawl;                                              //Behöver också hindra att ta ut om det är spärrat
+    Balance -= withdrawl;                                              
     MoneyInAccount.Add(-withdrawl);
-  
+  }
+  else
+    {
+      Console.WriteLine("Ditt konto är spärrat!");
+    }                                               
+      
 }
 
+public void Transfer(string prompt)
+  {
+    
+  }
 
 
 
 
-
-public override string ToString() //Gör ett objekt utskrivbart genom att skriva över en metod som redan finns
-                                      //När Console.WriteLine(kemi); körs visas detta nedan gällande kursen kemi   
+public override string ToString() 
+                                       
     {
         return $"Konotummer:{AccountNumber} Kontonamn:{AccountName} kontotyp:{AccountType} Saldo:{Balance} Ränta:{Interest} Kreditgräns: {CreditLimit})";
     }
 }
 
-//Console.ReadLine för att inhämta summor att sätta in/föra över? 
+
 
 
 

@@ -37,13 +37,15 @@ static int ChosenAccount(string prompt)
 }
 
 //Ska göra meny för val 
+//switch (choice)
 
 /*int index = ChosenAccount("Till vilket konto vill du sätta in pengar? 1 för lönekonto, 2 för sparkonto, 3 för kreditkonto ");
 Bankkonto chosenAccount = BankAccounts[index];   
 
 chosenAccount.Deposit("Hur mycket vill du sätta in? ");  */
 
-int index = ChosenAccount("Från vilket konto vill du ta ut pengar? 1 för lönekonto, 2 för sparkonto, 3 för kreditkonto ");
+/*int index = ChosenAccount("Från vilket konto vill du ta ut pengar? 1 för lönekonto, 2 för sparkonto, 3 för kreditkonto ");
 Bankkonto chosenAccount = BankAccounts[index];   
 
-chosenAccount.Withdraw("Hur mycket vill du ta ut? "); 
+chosenAccount.Withdraw("Hur mycket vill du ta ut? "); */
+
