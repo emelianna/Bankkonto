@@ -20,7 +20,7 @@ static double Amount(string prompt) //Metod för att fråga och ta emot summa. S
     string? input = Console.ReadLine();
     bool isValid = int.TryParse(input, out int number);
 
-    while (!isValid || number == 0) //För att säkra att svaret inte är 0 eller annat än ett nummer
+    while (!isValid || number < 0 ) //För att säkra att svaret inte är 0 eller annat än ett nummer
     {
         if (!isValid)
         {
@@ -28,7 +28,7 @@ static double Amount(string prompt) //Metod för att fråga och ta emot summa. S
         }
         else
         {
-            Console.Write("Du har angett 0. Vänligen ange ett heltal: ");
+            Console.Write("Du har angett 0 eller negativt tal. Vänligen ange ett heltal: ");
         }
  
         input = Console.ReadLine();                        
@@ -45,22 +45,21 @@ static double Amount(string prompt) //Metod för att fråga och ta emot summa. S
 
 public void Deposit(string prompt)               //Metod för att sätta in pengar.  
 {                                                 //Behöver hindra från att sätta in negativt belopp  
-  double deposit = Amount("Hur mycket vill du sätta in? ");                                 //Hindra om kontot är spärrat
-  double depositTo = 
-  
-  
-  MoneyInAccount.Add(deposit);                                            
+    double deposit = Amount(prompt);
+    Balance += deposit;              
+    MoneyInAccount.Add(deposit);
+                                          
                                                   //Överföringar mellan dessa tre konton??
                                                   //Hindra från att frånkonto och -tillkonto är samma
 }
 
-public void Withdraw(double amount)               //Metod för att ta ut pengar. Behöver hindra att ta ut om det är tomt, 
-                                                  //såvida det inte är tillåtet
-                                                  //Behöver också hindra att ta ut om det är spärrat
-{
-   amount = 1000; 
+public void Withdraw(string prompt)               //Metod för att ta ut pengar. Behöver hindra att ta ut om det är tomt, 
+ {   
+    double withdrawl = Amount(prompt);                                                //såvida det inte är tillåtet
+    Balance -= withdrawl;                                              //Behöver också hindra att ta ut om det är spärrat
+    MoneyInAccount.Add(-withdrawl);
+  
 }
-
 
 
 

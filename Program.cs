@@ -1,17 +1,17 @@
 ﻿using System.Globalization;
 
-Bankkonto salaryAccount = new("1234567890","Sven Svensson", "Salary Account", 30000, 0, 0, true); 
+Bankkonto salaryAccount = new("1234567890","Sven Svensson", "Salary Account", 30000, 0, 0, false); 
 
-Bankkonto saveAccount = new("2234567891","Sven Svensson", "Save Account", 3000000, 0.02, 0, true); 
+Bankkonto saveAccount = new("2234567891","Sven Svensson", "Save Account", 3000000, 0.02, 0, false); 
 
-Bankkonto creditAccount = new("3234567880","Sven Svensson", "Credit Account", 300, -0.07, -100000, true); 
+Bankkonto creditAccount = new("3234567880","Sven Svensson", "Credit Account", 300, -0.07, -100000, false); 
 
 List<Bankkonto> BankAccounts = [salaryAccount, saveAccount, creditAccount];
 
 
 
 
-static int ChosedAccount(string prompt)
+static int ChosenAccount(string prompt)
 {
     Console.WriteLine(prompt);
     string? input = Console.ReadLine();
@@ -36,3 +36,14 @@ static int ChosedAccount(string prompt)
     return index;
 }
 
+//Ska göra meny för val 
+
+/*int index = ChosenAccount("Till vilket konto vill du sätta in pengar? 1 för lönekonto, 2 för sparkonto, 3 för kreditkonto ");
+Bankkonto chosenAccount = BankAccounts[index];   
+
+chosenAccount.Deposit("Hur mycket vill du sätta in? ");  */
+
+int index = ChosenAccount("Från vilket konto vill du ta ut pengar? 1 för lönekonto, 2 för sparkonto, 3 för kreditkonto ");
+Bankkonto chosenAccount = BankAccounts[index];   
+
+chosenAccount.Withdraw("Hur mycket vill du ta ut? "); 
