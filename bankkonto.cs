@@ -16,7 +16,8 @@ double creditLimit, bool blocked)
 public void Deposit(double deposit)               //Metod för att sätta in pengar.  
 {                                                 //Behöver hindra från att sätta in negativt belopp  
   deposit = 1000;                                 //Hindra om kontot är spärrat
-                                                  //Ska insättningarna ske mellan dessa tre konton??
+                                              
+                                                  //Överföringar mellan dessa tre konton??
                                                   //Hindra från att frånkonto och -tillkonto är samma
 }
 
