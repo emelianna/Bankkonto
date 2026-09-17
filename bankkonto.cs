@@ -5,9 +5,9 @@ double balance, double interest,
 double creditLimit, bool blocked)
 {
     string AccountNumber = accountNumber;     //fält som använder konstruktorn för att ge fälten sina startvärden
-    string AccountName = accountName;         //de är inte public - ingen kod utanför klassen kan komma åt dem
-    string AccountType = accountType;
-    double Balance = balance;
+    public string AccountName { get; } = accountName;       //get för att de är private och program ska kunna komma åt
+    public string AccountType { get; } = accountType;
+    public double Balance { get; private set; } = balance;
     double Interest = interest;
     double CreditLimit = creditLimit;
     bool Blocked = blocked;
@@ -40,38 +40,54 @@ static double Amount(string prompt) //Metod för att fråga och ta emot summa. S
 
 
 
-public void Deposit(string prompt)               //Metod för att sätta in pengar.  
+public double Deposit(string prompt)               //Metod för att sätta in pengar.  
 {           
   if (!Blocked)    
   {                                  
     double deposit = Amount(prompt);
-    Balance += deposit;              
+    Balance += deposit;  
     MoneyInAccount.Add(deposit);
+
+    return deposit;
      }                                     
-   else
-    {
-      Console.WriteLine("Ditt konto är spärrat!");
-    }                                               
+  else
+{
+    Console.WriteLine("Ditt konto är spärrat!");
+    return 0;
+}                                             
                                                   
 }
 
-public void Withdraw(string prompt)               //Metod för att ta ut pengar. Behöver hindra att ta ut om det är tomt, 
+public double Withdraw(string prompt)               //Metod för att ta ut pengar. 
  {   
   if (!Blocked)
     {
 
-    double withdrawl = Amount(prompt);                                                //såvida det inte är tillåtet
-    Balance -= withdrawl;                                              
+   double withdrawl = Amount(prompt);
+
+if (Balance - withdrawl < CreditLimit)
+{
+    Console.WriteLine("Du har inte tillräckligt med pengar för det uttaget.");
+    return 0;
+}
+else
+{
+    Balance -= withdrawl;
     MoneyInAccount.Add(-withdrawl);
+    return withdrawl;
+}
+    
   }
+
   else
     {
       Console.WriteLine("Ditt konto är spärrat!");
+      return 0;
     }                                               
       
 }
 
-public void Transfer(string prompt)
+public void Transfer(string prompt) //Metod för att föra över mellan konton
   {
     
   }
